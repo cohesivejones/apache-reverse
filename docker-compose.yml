@@ -1,0 +1,19 @@
+version: '3.4'
+
+services:
+  servicea:
+    build:
+      context: service/.
+    expose:
+      - 4000
+  serviceb:
+    build:
+      context: service-ws/.
+    expose:
+      - 4000
+  apache:
+    image: 'bitnami/apache:latest'
+    volumes:
+      - ./vhosts.conf:/opt/bitnami/apache/conf/vhosts/vhosts.conf
+    ports:
+      - 80:8080
